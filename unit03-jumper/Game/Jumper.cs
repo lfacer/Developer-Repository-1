@@ -66,10 +66,17 @@ namespace Unit03.Game
         /// Watches the seeker by keeping track of how far away it is.
         /// </summary>
         /// <param name="jumper">The seeker to watch.</param>
-        public void WatchSeeker(Jumper jumper)
+        public void WatchWord(Jumper jumper)
         {
-            int newDistance = Math.Abs(location - jumper.GetLocation());
-            distance.Add(newDistance);
+            if (Word.Contains(guess))
+            {
+                Console.WriteLine("Found");
+            }
+
+            foreach (char letter in word)
+            {
+                Console.WriteLine(letter);
+            }
         }
     }
 }
