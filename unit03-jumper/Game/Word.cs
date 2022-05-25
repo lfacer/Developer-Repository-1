@@ -17,20 +17,21 @@ namespace Unit03.Game
         public class Word
         {
 
-            private string random_word = "";
+            public string random_word = "";
             public Word()
             {
                 random_word = "apple";
             }
 
-            public string GetLocation()
+            public string GetRandomWord()
             {
                 return random_word;
             }
 
-            public void CurrentLetter(string letter)
+            public string CurrentLetter(string letter)
             {
                 this.random_word = letter;
+                return letter;
             }
 
         }
@@ -56,6 +57,6 @@ namespace Unit03.Game
         /// <summary>
         /// Moves to the given location.
         /// </summary>
-        /// <param name="location">The given location.</param>
+        /// <param name="letter">The given location.</param>
     
 }

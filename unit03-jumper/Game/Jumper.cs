@@ -10,21 +10,18 @@ namespace Unit03.Game
     /// The responsibility of Hider is to keep track of its location and distance from the seeker.
     /// </para>
     /// </summary>
-    public class Hider
+    public class Jumper
     {
-        public int location = 0;
-        private List<int> distance = new List<int>();
+        public string letter = "";
+        public string random_word = "";
+
 
         /// <summary>
         /// Constructs a new instance of Hider. 
         /// </summary>
         public Jumper()
         {
-            Random random = new Random();
-            location = random.Next(1001);
-            // start with two so GetHint always works
-            distance.Add(0);
-            distance.Add(0);
+            random_word = "apple";
         }
 
         /// <summary>
@@ -33,24 +30,7 @@ namespace Unit03.Game
         /// <returns>A new hint.</returns>
         public string GetHint()
         {
-            int current = distance[distance.Count - 1];
-            int previous = distance[distance.Count - 2];
 
-            string hint = "(-.-) Nap time.";
-            if (current == 0)
-            {
-                hint = "(;.;) You found me!";
-            }
-            else if (current > previous)
-            {
-                hint = "(^.^) Getting colder!";
-            }
-            else if (current < previous)
-            {
-                hint = "(>.<) Getting warmer!";
-            }
-
-            return hint;
         }
 
         /// <summary>
@@ -66,17 +46,24 @@ namespace Unit03.Game
         /// Watches the seeker by keeping track of how far away it is.
         /// </summary>
         /// <param name="jumper">The seeker to watch.</param>
-        public void WatchWord(Jumper jumper)
+        
+        public void WatchWord(Word word)
         {
-            if (Word.Contains(guess))
+            if (Word.Contains(letter))
             {
                 Console.WriteLine("Found");
             }
 
-            foreach (char letter in word)
+            foreach (string letter in word)
             {
                 Console.WriteLine(letter);
             }
+        }
+
+        public void CreateJumper(string[] args)
+        {
+            object[] array = {@"-----",@" ___ ",@"/___\",@"\   /",@" \ / ",@"  0  ",@" /|\ ",@" / \ "};
+            string image = string.Join("/n", array);
         }
     }
 }

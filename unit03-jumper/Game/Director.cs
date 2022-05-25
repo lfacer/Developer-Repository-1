@@ -48,7 +48,7 @@ namespace Unit03.Game
         /// </summary>
         private void DoUpdates()
         {
-            hider.WatchSeeker(seeker);
+            jumper.WatchWord(word);
         }
 
         /// <summary>
