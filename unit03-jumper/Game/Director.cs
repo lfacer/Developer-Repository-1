@@ -28,7 +28,7 @@ namespace Unit03.Game
             while (isPlaying)
             {
                 GetInputs();
-                DoUpdates();
+                // DoUpdates();
                 DoOutputs();
             }
         }
@@ -48,7 +48,7 @@ namespace Unit03.Game
         /// </summary>
         private void DoUpdates()
         {
-            jumper.WatchWord(word);
+            jumper.CreateJumper();
         }
 
         /// <summary>
@@ -56,9 +56,9 @@ namespace Unit03.Game
         /// </summary>
         private void DoOutputs()
         {
-            string hint = hider.GetHint();
+            string hint = jumper.GetHint();
             terminalService.WriteText(hint);
-            if (hider.IsFound())
+            if (jumper.IsFound())
             {
                 isPlaying = false;
             }

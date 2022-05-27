@@ -30,6 +30,17 @@ namespace Unit03.Game
         /// <returns>A new hint.</returns>
         public string GetHint()
         {
+            string hint = "";
+            if(random_word.Contains(letter)) 
+            {
+                hint = "You guessed correctly!";
+            }
+            else
+            {
+                hint = "WRONG! Be careful or the jumper will die.";
+            }
+
+            return hint;
 
         }
 
@@ -39,31 +50,32 @@ namespace Unit03.Game
         /// <returns>True if found; false if otherwise.</returns>
         public bool IsFound()
         {
-            return distance[distance.Count - 1] == 0;
+            return true;
         }
 
-        /// <summary>
-        /// Watches the seeker by keeping track of how far away it is.
-        /// </summary>
-        /// <param name="jumper">The seeker to watch.</param>
-        
-        public void WatchWord(Word word)
+
+        public object CreateJumper()
         {
-            if (Word.Contains(letter))
+            var list1 = new List<Object> {@"-----",@" ___ ",@"/___\",@"\   /",@" \ / ",@"  0  ",@" /|\ ",@" / \ "};
+            int counter = 0;
+
+            if(random_word.Contains(letter))
             {
-                Console.WriteLine("Found");
+                Console.WriteLine(list1);
+                return list1;
             }
 
-            foreach (string letter in word)
+            else
             {
-                Console.WriteLine(letter);
+                while (counter < 7) 
+                {
+                    list1.Remove(counter);
+                    counter =+ 1;
+                    Console.WriteLine(list1);
+                }  
             }
-        }
 
-        public void CreateJumper(string[] args)
-        {
-            object[] array = {@"-----",@" ___ ",@"/___\",@"\   /",@" \ / ",@"  0  ",@" /|\ ",@" / \ "};
-            string image = string.Join("/n", array);
+            return list1;
         }
     }
 }
