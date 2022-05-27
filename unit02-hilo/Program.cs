@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Unit02.CardNumGame;
 
 namespace unit02_hilo
 {
