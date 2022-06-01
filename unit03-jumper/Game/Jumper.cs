@@ -32,13 +32,15 @@ namespace Unit03.Game
         public string GetHint()
         {
             string hint = "";
+            foreach (var user_input in random_word)
+
             if(random_word.Contains(user_input)) 
             {
-                hint = "You guessed correctly!";
+                hint += $" {user_input} ";
             }
             else
             {
-                hint = "WRONG! Be careful or the jumper will die.";
+                hint += " _ ";
             }
 
             return hint;
@@ -58,14 +60,14 @@ namespace Unit03.Game
         public object CreateJumper()
         {
             List<string> list1 = new List<string>();
-            list1.Add(@"-----");
-            list1.Add(@" ___ ");
-            list1.Add(@"/___\");
-            list1.Add(@"\   /");
-            list1.Add(@" \ / ");
-            list1.Add(@"  0  ");
-            list1.Add(@" /|\ ");
-            list1.Add(@" / \ ");
+            list1.Add(@" ----- ");
+            list1.Add(@"  ___  ");
+            list1.Add(@" /___\ ");
+            list1.Add(@" \   / ");
+            list1.Add(@"  \ /  ");
+            list1.Add(@"   0   ");
+            list1.Add(@"  /|\  ");
+            list1.Add(@"  / \  ");
 
             Console.WriteLine(list1);
             int counter = 0;

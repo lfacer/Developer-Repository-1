@@ -12,6 +12,7 @@ namespace Unit03.Game
         private bool isPlaying = true;
         private Word word = new Word();
         private TerminalService terminalService = new TerminalService();
+        private string user_input;
 
         /// <summary>
         /// Constructs a new instance of Director.
@@ -39,7 +40,7 @@ namespace Unit03.Game
         private void GetInputs()
         {
             // terminalService.WriteText(hider.location.ToString());
-            string user_input = terminalService.ReadText("\nEnter a letter[a-z]: ");
+            user_input = terminalService.ReadText("\nEnter a letter[a-z]: ");
             word.CurrentLetter(user_input);
         }
 

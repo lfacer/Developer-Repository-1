@@ -17,7 +17,7 @@ namespace Unit03.Game
         public class Word
         {
 
-            public string random_word = "";
+            private string random_word = "";
             public Word()
             {
                 random_word = "apple";
