@@ -12,7 +12,7 @@ namespace Unit03.Game
     /// </summary>
     public class Jumper
     {
-        public string letter = "";
+        public string user_input = "";
         public string random_word = "";
 
 
@@ -22,6 +22,7 @@ namespace Unit03.Game
         public Jumper()
         {
             random_word = "apple";
+            user_input = "";
         }
 
         /// <summary>
@@ -31,7 +32,7 @@ namespace Unit03.Game
         public string GetHint()
         {
             string hint = "";
-            if(random_word.Contains(letter)) 
+            if(random_word.Contains(user_input)) 
             {
                 hint = "You guessed correctly!";
             }
@@ -56,10 +57,20 @@ namespace Unit03.Game
 
         public object CreateJumper()
         {
-            var list1 = new List<Object> {@"-----",@" ___ ",@"/___\",@"\   /",@" \ / ",@"  0  ",@" /|\ ",@" / \ "};
-            int counter = 0;
+            List<string> list1 = new List<string>();
+            list1.Add(@"-----");
+            list1.Add(@" ___ ");
+            list1.Add(@"/___\");
+            list1.Add(@"\   /");
+            list1.Add(@" \ / ");
+            list1.Add(@"  0  ");
+            list1.Add(@" /|\ ");
+            list1.Add(@" / \ ");
 
-            if(random_word.Contains(letter))
+            Console.WriteLine(list1);
+            int counter = 0;
+    
+            if(random_word.Contains(user_input))
             {
                 Console.WriteLine(list1);
                 return list1;
@@ -69,7 +80,7 @@ namespace Unit03.Game
             {
                 while (counter < 7) 
                 {
-                    list1.Remove(counter);
+                    list1.RemoveAt(counter);
                     counter =+ 1;
                     Console.WriteLine(list1);
                 }  

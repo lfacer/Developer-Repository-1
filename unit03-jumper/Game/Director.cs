@@ -28,7 +28,7 @@ namespace Unit03.Game
             while (isPlaying)
             {
                 GetInputs();
-                // DoUpdates();
+                DoUpdates();
                 DoOutputs();
             }
         }
@@ -39,8 +39,8 @@ namespace Unit03.Game
         private void GetInputs()
         {
             // terminalService.WriteText(hider.location.ToString());
-            string letter = terminalService.ReadText("\nEnter a letter[a-z]: ");
-            word.CurrentLetter(letter);
+            string user_input = terminalService.ReadText("\nEnter a letter[a-z]: ");
+            word.CurrentLetter(user_input);
         }
 
         /// <summary>

@@ -28,10 +28,10 @@ namespace Unit03.Game
                 return random_word;
             }
 
-            public string CurrentLetter(string letter)
+            public string CurrentLetter(string user)
             {
-                this.random_word = letter;
-                return letter;
+                this.random_word = user;
+                return user;
             }
 
         }
@@ -57,6 +57,6 @@ namespace Unit03.Game
         /// <summary>
         /// Moves to the given location.
         /// </summary>
-        /// <param name="letter">The given location.</param>
+        /// <param name="user">The given location.</param>
     
 }
