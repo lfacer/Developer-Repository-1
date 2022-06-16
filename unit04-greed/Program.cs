@@ -25,6 +25,7 @@ namespace Unit04
         private static string DATA_PATH = "Data/messages.txt";
         private static Color WHITE = new Color(255, 255, 255);
         private static int DEFAULT_ARTIFACTS = 40;
+        public VideoService videoService = null;
 
 
         /// <summary>
@@ -49,18 +50,19 @@ namespace Unit04
             robot.SetText("#");
             robot.SetFontSize(FONT_SIZE);
             robot.SetColor(WHITE);
-            robot.SetPosition(new Point(0, 590));
+            robot.SetPosition(new Point(0, 585));
             cast.AddActor("robot", robot);
 
             // load the messages
             // List<string> messages = File.ReadAllLines(DATA_PATH).ToList<string>();
 
-            // create the artifacts
+            // rocks
             Random random = new Random();
             for (int i = 0; i < 25; i++)
             {
-                string text = ((char)random.Next(48)).ToString();
-                int score =- 1;
+                List<Actor> artifacts = cast.GetActors("artifacts");
+                string text = ((char)(79)).ToString();
+                int score = -1;
 
                 int x = random.Next(1, COLS);
                 int y = random.Next(1, ROWS);
@@ -71,6 +73,7 @@ namespace Unit04
                 int g = random.Next(0, 256);
                 int b = random.Next(0, 256);
                 Color color = new Color(r, g, b);
+                Point velocity = new Point(0, 3);
 
                 Artifact artifact = new Artifact();
                 artifact.SetText(text);
@@ -78,13 +81,16 @@ namespace Unit04
                 artifact.SetColor(color);
                 artifact.SetPosition(position);
                 artifact.SetScore(score);
+                artifact.SetVelocity(velocity);
                 cast.AddActor("artifacts", artifact);
             }
 
+            // Gems
             for (int i = 0; i < 15; i++)
             {
-                string text = ((char)random.Next(42)).ToString();
-                int score =+ 1;
+                List<Actor> artifacts = cast.GetActors("artifacts");
+                string text = ((char)(42)).ToString();
+                int score = 1;
 
                 int x = random.Next(1, COLS);
                 int y = random.Next(1, ROWS);
@@ -95,6 +101,7 @@ namespace Unit04
                 int g = random.Next(0, 256);
                 int b = random.Next(0, 256);
                 Color color = new Color(r, g, b);
+                Point velocity = new Point(0, 2);
 
                 Artifact artifact = new Artifact();
                 artifact.SetText(text);
@@ -102,6 +109,7 @@ namespace Unit04
                 artifact.SetColor(color);
                 artifact.SetPosition(position);
                 artifact.SetScore(score);
+                artifact.SetVelocity(velocity);
                 cast.AddActor("artifacts", artifact);
             }
 

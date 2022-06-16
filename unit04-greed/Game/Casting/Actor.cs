@@ -58,7 +58,7 @@ namespace Unit04.Game.Casting
         /// </summary>
         /// <returns>The text.</returns>
         public int GetValue()
-        {
+        {   
             return value;
         }
 
@@ -141,10 +141,10 @@ namespace Unit04.Game.Casting
         /// <exception cref="ArgumentException">When text is null.</exception>
         public void SetValue(int value)
         {
-            if (value == null)
-            {
-                throw new ArgumentException("score can't be null");
-            }
+            // if (value == null)
+            // {
+            //     throw new ArgumentException("score can't be null");
+            // }
             this.value = value;
         }
 

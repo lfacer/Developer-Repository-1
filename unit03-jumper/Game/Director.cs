@@ -8,11 +8,9 @@ namespace Unit03.Game
     /// </summary>
     public class Director
     {
-        private Jumper jumper = new Jumper();
+        private HangMan hangman = new HangMan();
         private bool isPlaying = true;
-        private Word word = new Word();
         private TerminalService terminalService = new TerminalService();
-        private string user_input;
 
         /// <summary>
         /// Constructs a new instance of Director.
@@ -29,7 +27,6 @@ namespace Unit03.Game
             while (isPlaying)
             {
                 GetInputs();
-                DoUpdates();
                 DoOutputs();
             }
         }
@@ -39,27 +36,21 @@ namespace Unit03.Game
         /// </summary>
         private void GetInputs()
         {
-            // terminalService.WriteText(hider.location.ToString());
-            user_input = terminalService.ReadText("\nEnter a letter[a-z]: ");
-            word.CurrentLetter(user_input);
+            /// terminalService.WriteText(hider.location.ToString());
+            string letter = terminalService.ReadText("\nEnter a letter:  ");
+            hangman.word.CurrentLetter(letter);
         }
-
-        /// <summary>
-        /// Keeps watch on where the seeker is moving.
-        /// </summary>
-        private void DoUpdates()
-        {
-            jumper.CreateJumper();
-        }
+       
 
         /// <summary>
         /// Provides a hint for the seeker to use.
         /// </summary>
         private void DoOutputs()
         {
-            string hint = jumper.GetHint();
+            string hint = hangman.GetHint();
             terminalService.WriteText(hint);
-            if (jumper.IsFound())
+            terminalService.WriteText(hangman.CreateMan());
+            if (hangman.IsComplete())
             {
                 isPlaying = false;
             }

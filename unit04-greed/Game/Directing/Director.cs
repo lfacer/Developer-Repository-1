@@ -15,6 +15,7 @@ namespace Unit04.Game.Directing
     {
         private KeyboardService keyboardService = null;
         private VideoService videoService = null;
+        
 
         /// <summary>
         /// Constructs a new instance of Director using the given KeyboardService and VideoService.
@@ -25,6 +26,7 @@ namespace Unit04.Game.Directing
         {
             this.keyboardService = keyboardService;
             this.videoService = videoService;
+            
         }
 
         /// <summary>
@@ -63,22 +65,31 @@ namespace Unit04.Game.Directing
             Actor banner = cast.GetFirstActor("banner");
             Actor robot = cast.GetFirstActor("robot");
             List<Actor> artifacts = cast.GetActors("artifacts");
+            int totalScore = 0;
 
-            banner.SetValue(0);
+
+            banner.SetText("Score: ");
             int maxX = videoService.GetWidth();
             int maxY = videoService.GetHeight();
             robot.MoveNext(maxX, maxY);
+            banner.SetText("Score: " + totalScore);
 
             foreach (Actor actor in artifacts)
             {
+                actor.MoveNext(maxX, maxY);
+
                 if (robot.GetPosition().Equals(actor.GetPosition()))
                 {
                     Artifact artifact = (Artifact) actor;
+                    totalScore += artifact.GetValue();
                     int score = artifact.GetScore();
-                    banner.SetValue(score);
+                    totalScore += score;
+                    banner.SetText("Score: " + totalScore); 
                 }
             } 
+
         }
+
 
         /// <summary>
         /// Draws the actors on the screen.
