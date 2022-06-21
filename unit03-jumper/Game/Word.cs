@@ -25,7 +25,7 @@ namespace Unit03.Game
 
         private string pickARandomNewWord(){
             /// Find list of words
-            string path = "/Users/lilysorensen/Documents/CSE 210/cse-210-proves/unit03-jumper/Game/RandomWords.txt" ;
+            string path = "/Users/lface/OneDrive/Desktop/CSE 210/Developer-Repository-1/unit03-jumper/Game/RandomWords.txt" ;
             /// read the list of words
             List <string> wordsList = new List<string>();
             foreach(string line in System.IO.File.ReadLines(path)){
