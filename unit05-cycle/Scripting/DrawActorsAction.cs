@@ -37,5 +37,6 @@ namespace Unit05.Game.Scripting
             videoService.DrawActors(messages);
             videoService.FlushBuffer();
         }
+
     }
 }
