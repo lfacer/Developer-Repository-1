@@ -38,5 +38,20 @@ namespace Unit05.Game.Scripting
             videoService.FlushBuffer();
         }
 
+        public void Execute2(Cast cast, Script script)
+        {
+            Snake2 snake2 = (Snake2)cast.GetFirstActor2("snake2");
+            List<Actor> segments2 = snake2.GetSegments2();
+            Actor score = cast.GetFirstActor2("score");
+            // Actor food = cast.GetFirstActor("food");
+            List<Actor> messages = cast.GetActors2("messages");
+            
+            videoService.ClearBuffer();
+            videoService.DrawActors(segments2);
+            videoService.DrawActor(score);
+            // videoService.DrawActor(food);
+            videoService.DrawActors(messages);
+            videoService.FlushBuffer();
+        }
     }
 }

@@ -20,4 +20,9 @@ namespace Unit05.Game.Scripting
         /// <param name="script">The script of actions.</param>
         void Execute(Cast cast, Script script);
     }
+
+    public interface Action2
+    {
+        void Execute2(Cast cast, Script script);
+    }
 }

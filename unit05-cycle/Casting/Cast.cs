@@ -54,6 +54,16 @@ namespace Unit05.Game.Casting
             return results;
         }
 
+        public List<Actor> GetActors2(string group)
+        {
+            List<Actor> results2 = new List<Actor>();
+            if (actors.ContainsKey(group))
+            {
+                results2.AddRange(actors[group]);
+            }
+            return results2;
+        }
+
         /// <summary>
         /// Gets all the actors in the cast.
         /// </summary>
@@ -66,6 +76,16 @@ namespace Unit05.Game.Casting
                 results.AddRange(result);
             }
             return results;
+        }
+
+        public List<Actor> GetAllActors2()
+        {
+            List<Actor> results2 = new List<Actor>();
+            foreach (List<Actor> result2 in actors.Values)
+            {
+                results2.AddRange(result2);
+            }
+            return results2;
         }
 
         /// <summary>
@@ -84,6 +104,19 @@ namespace Unit05.Game.Casting
                 }
             }
             return result;
+        }
+
+        public Actor GetFirstActor2(string group)
+        {
+            Actor result2 = null;
+            if (actors.ContainsKey(group))
+            {
+                if (actors[group].Count > 0)
+                {
+                    result2 = actors[group][0];
+                }
+            }
+            return result2;
         }
 
         /// <summary>

@@ -43,6 +43,16 @@ namespace Unit05.Game.Scripting
             }
         }
 
+
+        public void Execute2(Cast cast, Script script)
+        {
+            List<Actor> actors = cast.GetAllActors2();
+            foreach (Actor actor in actors)
+            {
+                actor.MoveNext2();
+            }
+        }
+
     }
 
 }

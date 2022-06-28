@@ -82,6 +82,13 @@ namespace Unit05.Game.Casting
             position = new Point(x, y);
         }
 
+        public virtual void MoveNext2()
+        {
+            int x = ((position.GetX() + velocity.GetX()) + Constants.MAX_X) % Constants.MAX_X;
+            int y = ((position.GetY() + velocity.GetY()) + Constants.MAX_Y) % Constants.MAX_Y;
+            position = new Point(x, y);
+        }
+
         /// <summary>
         /// Sets the actor's color to the given value.
         /// </summary>

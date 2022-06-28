@@ -62,7 +62,7 @@ namespace Unit04
             {
                 List<Actor> artifacts = cast.GetActors("artifacts");
                 string text = ((char)(79)).ToString();
-                int score = -1;
+                int score = -(1);
 
                 int x = random.Next(1, COLS);
                 int y = random.Next(1, ROWS);
@@ -73,7 +73,7 @@ namespace Unit04
                 int g = random.Next(0, 256);
                 int b = random.Next(0, 256);
                 Color color = new Color(r, g, b);
-                Point velocity = new Point(0, 3);
+                Point velocity = new Point(0, 4);
 
                 Artifact artifact = new Artifact();
                 artifact.SetText(text);
@@ -101,7 +101,7 @@ namespace Unit04
                 int g = random.Next(0, 256);
                 int b = random.Next(0, 256);
                 Color color = new Color(r, g, b);
-                Point velocity = new Point(0, 2);
+                Point velocity = new Point(0, 3);
 
                 Artifact artifact = new Artifact();
                 artifact.SetText(text);

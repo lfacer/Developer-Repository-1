@@ -38,6 +38,9 @@ namespace Unit05.Game.Directing
                 ExecuteActions("input", cast, script);
                 ExecuteActions("update", cast, script);
                 ExecuteActions("output", cast, script);
+                ExecuteActions2("input", cast, script);
+                ExecuteActions2("update", cast, script);
+                ExecuteActions2("output", cast, script);
             }
             videoService.CloseWindow();
         }
@@ -54,6 +57,15 @@ namespace Unit05.Game.Directing
             foreach(Action action in actions)
             {
                 action.Execute(cast, script);
+            }
+        }
+
+        private void ExecuteActions2(string group, Cast cast, Script script)
+        {
+            List<Action> actions2 = script.GetActions2(group);
+            foreach(Action action2 in actions2)
+            {
+                action2.Execute(cast, script);
             }
         }
     }

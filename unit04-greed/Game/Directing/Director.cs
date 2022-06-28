@@ -15,6 +15,9 @@ namespace Unit04.Game.Directing
     {
         private KeyboardService keyboardService = null;
         private VideoService videoService = null;
+
+        private int score;
+        private int totalScore = 0;
         
 
         /// <summary>
@@ -65,10 +68,9 @@ namespace Unit04.Game.Directing
             Actor banner = cast.GetFirstActor("banner");
             Actor robot = cast.GetFirstActor("robot");
             List<Actor> artifacts = cast.GetActors("artifacts");
-            int totalScore = 0;
+            updateBanner(banner);
 
 
-            banner.SetText("Score: ");
             int maxX = videoService.GetWidth();
             int maxY = videoService.GetHeight();
             robot.MoveNext(maxX, maxY);
@@ -81,16 +83,22 @@ namespace Unit04.Game.Directing
                 if (robot.GetPosition().Equals(actor.GetPosition()))
                 {
                     Artifact artifact = (Artifact) actor;
-                    totalScore += artifact.GetValue();
-                    int score = artifact.GetScore();
-                    totalScore += score;
-                    banner.SetText("Score: " + totalScore); 
+                    totalScore = totalScore + artifact.GetValue();
+                    score = artifact.GetScore();
+                    totalScore = totalScore + score;
+                    // banner.SetText("Score: " + totalScore); 
                 }
+
+                updateBanner(banner);
+            
             } 
 
         }
 
-
+        private void updateBanner(Actor banner)
+        {
+            banner.SetText("Score: " + totalScore);
+        }
         /// <summary>
         /// Draws the actors on the screen.
         /// </summary>

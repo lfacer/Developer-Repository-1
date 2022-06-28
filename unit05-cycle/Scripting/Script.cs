@@ -54,6 +54,16 @@ namespace Unit05.Game.Scripting
             return results;
         }
 
+        public List<Action> GetActions2(string group)
+        {
+            List<Action> results2 = new List<Action>();
+            if (actions.ContainsKey(group))
+            {
+                results2.AddRange(actions[group]);
+            }
+            return results2;
+        }
+
         /// <summary>
         /// Removes the given action from the given group.
         /// </summary>
