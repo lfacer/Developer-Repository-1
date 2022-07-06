@@ -44,6 +44,12 @@ namespace Unit04.Game.Casting
         {
             return this.x == other.GetX() && this.y == other.GetY();
         }
+        public bool Near(Point other)
+        {
+            int difX = System.Math.Abs(this.x - other.x);
+            int difY = System.Math.Abs(this.y - other.y);
+            return difX <= 10 && difY <= 10;
+        }
 
         /// <summary>
         /// Gets the value of the x coordinate.

@@ -24,8 +24,8 @@ namespace Unit04
         private static string CAPTION = "Greed";
         private static string DATA_PATH = "Data/messages.txt";
         private static Color WHITE = new Color(255, 255, 255);
-        private static int DEFAULT_ARTIFACTS = 40;
-        public VideoService videoService = null;
+        private static int DEFAULT_GEMS = 15;
+        private static int DEFAULT_ROCKS = 25;
 
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Unit04
 
             // create the banner
             Actor banner = new Actor();
-            banner.SetValue(0);
+            banner.SetText("");
             banner.SetFontSize(FONT_SIZE);
             banner.SetColor(WHITE);
             banner.SetPosition(new Point(CELL_SIZE, 0));
@@ -50,68 +50,59 @@ namespace Unit04
             robot.SetText("#");
             robot.SetFontSize(FONT_SIZE);
             robot.SetColor(WHITE);
-            robot.SetPosition(new Point(0, 585));
+            robot.SetPosition(new Point(MAX_X / 2, MAX_Y - 20));
             cast.AddActor("robot", robot);
 
             // load the messages
-            // List<string> messages = File.ReadAllLines(DATA_PATH).ToList<string>();
+            List<string> messages = File.ReadAllLines(DATA_PATH).ToList<string>();
 
-            // rocks
+            // create the artifacts
             Random random = new Random();
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < DEFAULT_GEMS; i++)
             {
-                List<Actor> artifacts = cast.GetActors("artifacts");
-                string text = ((char)(79)).ToString();
-                int score = -(1);
 
                 int x = random.Next(1, COLS);
                 int y = random.Next(1, ROWS);
                 Point position = new Point(x, y);
                 position = position.Scale(CELL_SIZE);
 
-                int r = random.Next(0, 256);
-                int g = random.Next(0, 256);
-                int b = random.Next(0, 256);
+                int r = random.Next(64, 256);
+                int g = random.Next(64, 256);
+                int b = random.Next(64, 256);
                 Color color = new Color(r, g, b);
-                Point velocity = new Point(0, 4);
 
-                Artifact artifact = new Artifact();
-                artifact.SetText(text);
-                artifact.SetFontSize(FONT_SIZE);
-                artifact.SetColor(color);
-                artifact.SetPosition(position);
-                artifact.SetScore(score);
-                artifact.SetVelocity(velocity);
-                cast.AddActor("artifacts", artifact);
+                Point velocity = new Point(0, 10);
+
+                Gem gem = new Gem();
+                gem.SetFontSize(FONT_SIZE);
+                gem.SetColor(color);
+                gem.SetPosition(position);
+                gem.SetVelocity(velocity);
+                cast.AddActor("gems and rocks", gem);
             }
-
-            // Gems
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < DEFAULT_ROCKS; i++)
             {
-                List<Actor> artifacts = cast.GetActors("artifacts");
-                string text = ((char)(42)).ToString();
-                int score = 1;
 
                 int x = random.Next(1, COLS);
                 int y = random.Next(1, ROWS);
                 Point position = new Point(x, y);
                 position = position.Scale(CELL_SIZE);
 
-                int r = random.Next(0, 256);
-                int g = random.Next(0, 256);
-                int b = random.Next(0, 256);
+                int r = random.Next(64, 256);
+                int g = random.Next(64, 256);
+                int b = random.Next(64, 256);
                 Color color = new Color(r, g, b);
-                Point velocity = new Point(0, 3);
 
-                Artifact artifact = new Artifact();
-                artifact.SetText(text);
-                artifact.SetFontSize(FONT_SIZE);
-                artifact.SetColor(color);
-                artifact.SetPosition(position);
-                artifact.SetScore(score);
-                artifact.SetVelocity(velocity);
-                cast.AddActor("artifacts", artifact);
+                Point velocity = new Point(0, 5);
+
+                Rock rock = new Rock();
+                rock.SetFontSize(FONT_SIZE);
+                rock.SetColor(color);
+                rock.SetPosition(position);
+                rock.SetVelocity(velocity);
+                cast.AddActor("gems and rocks", rock);
             }
+            
 
             // start the game
             KeyboardService keyboardService = new KeyboardService(CELL_SIZE);

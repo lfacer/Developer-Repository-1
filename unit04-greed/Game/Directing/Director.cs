@@ -15,10 +15,7 @@ namespace Unit04.Game.Directing
     {
         private KeyboardService keyboardService = null;
         private VideoService videoService = null;
-
-        private int score;
-        private int totalScore = 0;
-        
+        private int Score;
 
         /// <summary>
         /// Constructs a new instance of Director using the given KeyboardService and VideoService.
@@ -29,7 +26,6 @@ namespace Unit04.Game.Directing
         {
             this.keyboardService = keyboardService;
             this.videoService = videoService;
-            
         }
 
         /// <summary>
@@ -38,6 +34,8 @@ namespace Unit04.Game.Directing
         /// <param name="cast">The given cast.</param>
         public void StartGame(Cast cast)
         {
+            Score = 0;
+            System.Console.WriteLine("LILY IS STARTING THE GAME");
             videoService.OpenWindow();
             while (videoService.IsWindowOpen())
             {
@@ -56,6 +54,7 @@ namespace Unit04.Game.Directing
         {
             Actor robot = cast.GetFirstActor("robot");
             Point velocity = keyboardService.GetDirection();
+            velocity = new Point(velocity.GetX(), 0);
             robot.SetVelocity(velocity);     
         }
 
@@ -67,38 +66,48 @@ namespace Unit04.Game.Directing
         {
             Actor banner = cast.GetFirstActor("banner");
             Actor robot = cast.GetFirstActor("robot");
-            List<Actor> artifacts = cast.GetActors("artifacts");
-            updateBanner(banner);
+            List<Actor> rocksGems = cast.GetActors("gems and rocks");
 
+            updateBanner(banner);
 
             int maxX = videoService.GetWidth();
             int maxY = videoService.GetHeight();
             robot.MoveNext(maxX, maxY);
-            banner.SetText("Score: " + totalScore);
 
-            foreach (Actor actor in artifacts)
+            foreach (Actor actor in rocksGems)
             {
-                actor.MoveNext(maxX, maxY);
-
-                if (robot.GetPosition().Equals(actor.GetPosition()))
+                if (robot.GetPosition().Near(actor.GetPosition()))
                 {
-                    Artifact artifact = (Artifact) actor;
-                    totalScore = totalScore + artifact.GetValue();
-                    score = artifact.GetScore();
-                    totalScore = totalScore + score;
-                    // banner.SetText("Score: " + totalScore); 
+                    if (actor is Gem){
+                        Gem g = (Gem)actor;
+                        Score += g.getPointValue();
+                        g.SetPosition(new Point(g.GetPosition().GetX(), maxY));
+                    }
+                    else if (actor is Rock){
+                        Rock r = (Rock)actor;
+                        Score += r.getPointValue();
+                        r.SetPosition(new Point(r.GetPosition().GetX(), maxY));
+
+                    }
+
+                    updateBanner(banner);
                 }
+                
+                // string info = actor.GetPosition().GetX() + "," + actor.GetPosition().GetY();
+                actor.MoveNext(maxX, maxY); /// need to check 
+                // info += "-->" + actor.GetPosition().GetX() + "," + actor.GetPosition().GetY();
 
-                updateBanner(banner);
-            
+                // System.Console.WriteLine(info);
+
+                
             } 
-
         }
 
-        private void updateBanner(Actor banner)
-        {
-            banner.SetText("Score: " + totalScore);
+        /// function that creates banner that shows the score
+        private void updateBanner(Actor banner){
+            banner.SetText("Score: " + Score);
         }
+
         /// <summary>
         /// Draws the actors on the screen.
         /// </summary>

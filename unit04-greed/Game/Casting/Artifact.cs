@@ -2,50 +2,41 @@ namespace Unit04.Game.Casting
 {
     // TODO: Implement the Artifact class here
 
+
     // 1) Add the class declaration. Use the following class comment. Make sure you
     //    inherit from the Actor class.
 
-        /// <summary>
+
+
+      /// <summary>
         /// <para>An item of cultural or historical interest.</para>
         /// <para>
-        /// The responsibility of an Artifact is to provide a score about itself.
+        /// The responsibility of an Artifact is to provide a message about itself.
         /// </para>
         /// </summary>
-    public class Artifact : Actor
-    {
-        private int score = 0;
-
-    // 2) Create the class constructor. Use the following method comment.
-        
+    public class Artifact : Actor{
+          
         /// <summary>
         /// Constructs a new instance of Artifact.
         /// </summary>
-        public Artifact()
-        {
+        public Artifact():base(){
         }
 
-    // 3) Create the GetScore() method. Use the following method comment.
-        
         /// <summary>
-        /// Gets the artifact's score.
+        /// Gets the artifact's message.
         /// </summary>
-        /// <returns>The score as a int.</returns>
-        public int GetScore()
-        {
-            return score;
+        /// <returns>The message as a string.</returns>
+        private string _message = "";
+        public string GetMessage(){
+            return _message;
         }
-        
 
-    // 4) Create the SetScore(int score) method. Use the following method comment.
-        
         /// <summary>
-        /// Sets the artifact's score to the given value.
+        /// Sets the artifact's message to the given value.
         /// </summary>
-        /// <param name="score">The given score.</param>
-        public void SetScore(int score)
-        {
-            this.score = score;
+        /// <param name="message">The given message.</param>
+        public void SetMessage(string message){
+            _message = message;
         }
-    }
-    
+    }       
 }

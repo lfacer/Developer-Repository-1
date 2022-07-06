@@ -12,12 +12,11 @@ namespace Unit04.Game.Casting
     /// </summary>
     public class Actor
     {
-        private int value = 0;
         private string text = "";
         private int fontSize = 15;
         private Color color = new Color(255, 255, 255); // white
-        private Point position = new Point(0,0);
-        private Point velocity = new Point(0,0);
+        private Point position = new Point(0, 0);
+        private Point velocity = new Point(0, 0);
 
         /// <summary>
         /// Constructs a new instance of Actor.
@@ -57,12 +56,7 @@ namespace Unit04.Game.Casting
         /// Gets the actor's text.
         /// </summary>
         /// <returns>The text.</returns>
-        public int GetValue()
-        {   
-            return value;
-        }
-
-        public string GetText()
+        public virtual string GetText()
         {
             return text;
         }
@@ -87,7 +81,7 @@ namespace Unit04.Game.Casting
         {
             int x = ((position.GetX() + velocity.GetX()) + maxX) % maxX;
             int y = ((position.GetY() + velocity.GetY()) + maxY) % maxY;
-            position = new Point(x,y);
+            position = new Point(x, y);
         }
 
         /// <summary>
@@ -137,17 +131,8 @@ namespace Unit04.Game.Casting
         /// <summary>
         /// Sets the actor's text to the given value.
         /// </summary>
-        /// <param name="score">The given text.</param>
+        /// <param name="text">The given text.</param>
         /// <exception cref="ArgumentException">When text is null.</exception>
-        public void SetValue(int value)
-        {
-            // if (value == null)
-            // {
-            //     throw new ArgumentException("score can't be null");
-            // }
-            this.value = value;
-        }
-
         public void SetText(string text)
         {
             if (text == null)
